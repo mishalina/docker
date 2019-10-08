@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker run --name overlord -d nginx
+docker container exec overlord nginx -s reload
