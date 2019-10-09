@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker run --name overlord -d nginx
-docker container exec overlord nginx -s reload
+docker run -p 4000:80 --name MyHello hello-world
+docker stop MyHello
+docker rm MyHello

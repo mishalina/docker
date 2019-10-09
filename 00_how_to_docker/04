@@ -1,5 +1,3 @@
 #!/bin/bash
-docker run --name Char hello-world
-docker images hello-world
-docker rm Char
-docker ps -a
+docker run hello-world
+docker image ls
