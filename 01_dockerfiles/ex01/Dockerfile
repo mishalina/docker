@@ -19,9 +19,13 @@ EXPOSE 9987/udp 10011 30033
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install wget bzip2 -y
-RUN wget http://dl.4players.de/ts/releases/3.7.1/teamspeak3-server_linux_amd64-3.7.1.tar.bz2
-RUN tar -xvf teamspeak3-server_linux_amd64-3.7.1.tar.bz2
+RUN wget http://files.teamspeak-services.com/releases/server/3.9.1/teamspeak3-server_linux_amd64-3.9.1.tar.bz2
+RUN tar -xvf teamspeak3-server_linux_amd64-3.9.1.tar.bz2
 
 WORKDIR teamspeak3-server_linux_amd64
 
-ENTRYPOINT sh ts3server_minimal_runscript.sh
+ENTRYPOINT ./ts3server
+# docker build 
+# run
+# docker run --name ts3serv --rm -p 9987:9987/udp -p 10011:10011 -p 30033:30033 ID_IMAGE
+
