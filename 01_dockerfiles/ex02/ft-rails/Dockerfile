@@ -1,20 +1,19 @@
-FROM ruby:latest
+FROM ruby:2.2.2
 
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install nodejs -y
-RUN gem install rails bundler
+# see http://guides.rubyonrails.org/command_line.html#rails-dbconsole
+RUN apt-get update && apt-get install -y mysql-client sqlite3 --no-install-recommends
+RUN gem install rails --version 4.2.4
 
-MAINTAINER abooster 
+ENV RAILS_VERSION 5.0.1
+ENV RAILS_ENV=development
 
-# Create application
-ONBUILD WORKDIR /opt
-ONBUILD RUN rails new app
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
 
-ONBUILD WORKDIR /opt/app
-# install staff
+ONBUILD ADD app /opt/app
+
 ONBUILD RUN bundle install
-ONBUILD RUN rake db:migrate
+ONBUILD RUN rake db:setup
 ONBUILD RUN rake db:seed
-
-# build image
-# docker build -t ft-rails:on-build ft-rails
+#docker build -t ft-rails:on-build .
+#docker run -it --rm ft-rails:on-build
