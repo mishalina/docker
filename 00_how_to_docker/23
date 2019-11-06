@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Create an overlay-type internal network that you will name overmind.
 docker network create -d overlay overmind
 #to check
 #docker network ls

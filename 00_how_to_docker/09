@@ -1,9 +1,14 @@
 #!/bin/bash
-
+# From the shell of a debian container, install via the container’s package 
+# manager everything you need to compile C source code and push it onto a git 
+# repo (of course, make sure before that the package manager and the packages 
+# already in the container are updated). For this exercise, you should only 
+# specify the commands to be run directly in the container.
 #run debian and launch commands directly into container
-#docker run -it debian /bin/bash
+#docker run -ti --rm debian /bin/bash
 apt-get update
 apt-get upgrade
 apt-get apt-get install -y build-essential git
-#exit 
-#leave conteiner
+apt-get install vim -y && apt-get install gcc -y
+#exit
+#leave container
