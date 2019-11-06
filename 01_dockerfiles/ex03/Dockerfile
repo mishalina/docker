@@ -6,11 +6,10 @@
 #    By: abooster <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/03 16:44:03 by abooster          #+#    #+#              #
-#    Updated: 2019/11/03 16:55:09 by abooster         ###   ########.fr        #
+#    Updated: 2019/11/06 14:37:57 by abooster         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# THE TASK
 # Docker can be useful to test an application that’s still being developed 
 # without polluting your libraries. You will have to design a Dockerfile that
 # gets the development version of Gitlab - Community Edition installs it with 
@@ -22,8 +21,6 @@
 
 FROM ubuntu
 
-LABEL maintainer abooster
-
 RUN apt-get update && apt-get upgrade -y && apt-get install tzdata -y
 RUN apt-get install -y curl openssh-server ca-certificates   
 
@@ -32,4 +29,5 @@ RUN wget https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/scrip
 EXPOSE 443 80 22
 
 ENTRYPOINT (/opt/gitlab/embedded/bin/runsvdir-start &) && gitlab-ctl reconfigure && tail -f /dev/null
-
+# docker build -t ex03 .
+# docker run -it --rm -p 8080:80 -p 8022:22 -p 8443:443 --privileged ex03
